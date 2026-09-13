@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Academic profile of a theoretical computer science researcher">
+  <title>Denil Sharipov</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --page-bg: light-dark(#ffffff, #101828);
+      --surface: light-dark(#f8f9fc, #182230);
+      --ink: light-dark(#101828, #f2f4f7);
+      --muted: light-dark(#536176, #b3bdca);
+      --line: light-dark(#e4e7ec, #344054);
+      --accent: light-dark(#3157dc, #8ea6ff);
+      --accent-solid: light-dark(#3157dc, #5f7bea);
+      --accent-soft: light-dark(#eff3ff, #1d2939);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { 
+      /* Scale the page down to 80%. Use 1.2 for 120%, etc. */
+      transform: scale(1.1);
+  
+      /* Critical: Prevents the page from shifting away from the top-left corner */
+      transform-origin: top left;
+  
+      /* Compensate for the lost width/height so background fills the viewport */
+      width: 91%; /* Calculation: 100 / 0.8 = 125% */
+      height: 91%;
+  
+      /* Optional: Hide scrollbars if scaling causes clipping issues */
+      overflow-x: hidden; 
+
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--page-bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    button,
+    a { -webkit-tap-highlight-color: transparent; }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 58px 36px 62px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 30px;
+      align-items: center;
+      padding-bottom: 46px;
+    }
+
+    .portrait {
+      width: 120px;
+      height: 136px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: -.035em;
+    }
+
+    h2 { font-size: 1.25rem; }
+    h3 { font-size: 1rem; }
+
+    .summary {
+      max-width: 650px;
+      margin: 14px 0 18px;
+      color: var(--muted);
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .contact-button,
+    .cv-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 9px 14px;
+      border-radius: 9px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .contact-button {
+      border: 0;
+      background: var(--accent-solid);
+      color: #ffffff;
+    }
+
+    .cv-button {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+    }
+
+    .contact-button:hover,
+    .cv-button:hover { filter: brightness(1.08); }
+
+    .contact-button:focus-visible,
+    .cv-button:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+      outline-offset: 3px;
+    }
+
+    .location { color: var(--muted); }
+
+    .section {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 30px;
+      padding: 34px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-copy {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .topics {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .topic {
+      padding: 16px;
+      border-radius: 12px;
+      background: var(--surface);
+    }
+
+    .topic h3 { margin-bottom: 7px; }
+    .topic p { margin: 0; color: var(--muted); }
+
+    .education { display: grid; }
+
+    .degree {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 18px;
+      padding: 0 0 22px;
+    }
+
+    .degree:last-child { padding-bottom: 0; }
+    .year { color: var(--accent); font-weight: 500; }
+    .degree p { margin: 5px 0 0; color: var(--muted); }
+
+    .dblp-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 18px;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      text-decoration: none;
+    }
+
+    .dblp-link strong { font-weight: 500; }
+    .dblp-link span { color: var(--accent); white-space: nowrap; }
+    .dblp-link:hover span { text-decoration: underline; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    @media (max-width: 720px) {
+      .page { padding: 42px 24px 48px; }
+      .section { grid-template-columns: 1fr; gap: 15px; }
+    }
+
+    @media (max-width: 520px) {
+      .intro { grid-template-columns: 1fr; gap: 20px; }
+      .portrait { width: 84px; height: 92px; }
+      .dblp-link { align-items: flex-start; flex-direction: column; }
+      footer { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="intro">
+      <!-- Replace this placeholder with: <img src="images/photo.jpeg" alt="Your Name"> -->
+      <img src="images/photo.jpeg" alt="Denil Sharipov" width="170">
+      <div>
+        <h1 style="font-weight: 300; font-size: 38px;">Denil Sharipov</h1>
+        <p class="summary">M.Sc. student at Weizmann Institute of Science.</p>
+        <div class="contact-row">
+          <button class="contact-button" id="protected-contact" type="button">Copy email</button>
+          <!-- Place cv.pdf next to this HTML file, or replace the path below. -->
+          <!-- <a class="cv-button" href="" download>Get CV</a> -->
+          <span class="location">Rehovot, Israel</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="research">
+      <h2>Research</h2>
+      <div>
+        <p class="section-copy">I am broadly interested in computational complexity theory and value conceptual and creative ideas. Currently, I am mostly focused on the following areas:
+        </p>
+        <div class="topics">
+          <article class="topic">
+            <h3>Fine-grained complexity</h3>
+            <p>Proving non-trivial lower bounds in strong computational models (like RAM-machine) is generally extremely hard. Let's instead prove <strong>conditional</strong> lower bounds: assuming a widely believed conjectures (as OV or APSP) establish that some other problems cannot be solved faster than n^2 or n^3.</p>
+          </article>
+          <article class="topic">
+            <h3>Structural complexity</h3>
+            <p>While in FGC we focus on individual algorithms, in structural complexity we study <strong>large</strong> complexity classes and connections between them. For example, it is known that polynomially bounded interactive protocols (IP) can compute all of PSPACE, and a single counting oracle (#P) is enough to capture the entire polynomial hierarchy (PH). </p>
+          </article>
+          <article class="topic">
+            <h3>Non-uniform complexity</h3>
+            <p>Non-uniform circuits (Boolean or algebraic) are extremely powerful: they can recognize undecidable languages. While proving circuit size lower bounds for natural problems is notoriously difficult, they surprisingly appear as barriers to many unresolved questions. For example, PIT derandomization implies strong circuit lower bounds for Boolean or algebraic circuits, as well as SETH-hardness of 3SUM. </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <h2>Education</h2>
+      <div class="education">
+        <article class="degree">
+          <span class="year">Present</span>
+          <div>
+            <h3>M.Sc. in Theoretical Computer Science </h3>
+            <p>Weizmann Institute of Science</p>
+          </div>
+        </article>
+        <article class="degree">
+          <span class="year">2024</span>
+          <div>
+            <h3>B.Sc. in Applied Mathematics and Computer Science </h3>
+            <p>St Petersburg University, Department of Mathematics and Computer Science</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="publications">
+      <h2>Publications</h2>
+      <div>
+        <p class="section-copy">A complete and up-to-date bibliography is maintained on DBLP.</p>
+        <!-- Replace the URL below with your DBLP profile URL. -->
+        <a class="dblp-link" href="https://dblp.org/pid/340/2316.html" rel="me noopener" target="_blank">
+          <strong>DBLP bibliography</strong>
+          <span>View all publications ↗</span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <span>Denil Sharipov</span>
+      <span>Last updated 2026</span>
+    </footer>
+  </main>
+
+  <script>
+  (() => {
+    const button = document.getElementById('protected-contact');
+
+    const encodedContact = [
+      100, 101, 110, 105, 108, 46, 105,
+      46, 115, 104, 97, 114, 105, 112,
+      111, 118, 64, 103, 109, 97, 105,
+      108, 46, 99, 111, 109
+    ]
+
+
+    function fallbackCopy(text) {
+      const input = document.createElement('textarea');
+      input.value = text;
+      input.setAttribute('readonly', '');
+      input.style.position = 'fixed';
+      input.style.opacity = '0';
+
+      document.body.appendChild(input);
+      input.select();
+
+      const copied = document.execCommand('copy');
+      input.remove();
+
+      return copied;
+    }
+
+    button.addEventListener('click', async () => {
+      const address = String.fromCharCode(...encodedContact);
+      let copied = false;
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(address);
+          copied = true;
+        } else {
+          copied = fallbackCopy(address);
+        }
+      } catch {
+        copied = fallbackCopy(address);
+      }
+
+      button.textContent = copied ? 'Email copied' : 'Copy failed';
+
+      window.setTimeout(() => {
+        button.textContent = 'Copy email';
+      }, 1800);
+    });
+  })();
+</script>
+</body>
+</html>
