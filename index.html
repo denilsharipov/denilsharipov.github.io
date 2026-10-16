@@ -349,31 +349,63 @@
     </header>
 
     <section class="section" id="research">
-      <h2>Research</h2>
+  <h2>Research</h2>
 
-      <div>
-        <p class="section-copy">
-          I am broadly interested in computational complexity theory and value conceptual and creative ideas. Currently, I am mostly focused on the following areas:
+  <div>
+    <p class="section-copy">
+      I am broadly interested in <strong>computational complexity theory</strong>
+      and value conceptual and creative ideas. Currently, I am mostly focused on
+      the following areas:
+    </p>
+
+    <div class="topics">
+      <article class="topic">
+        <h3>Fine-grained complexity</h3>
+        <p>
+          <strong>Boolean Satisfiability Problem (SAT)</strong> is usually the
+          first <strong>NP-complete problem</strong> we meet in textbooks. If we
+          believe in <strong>P != NP</strong>, SAT cannot be solved in
+          <strong>polynomial time</strong>. Can it be solved in
+          <strong>2^(n/2)</strong>? Or maybe <strong>n^(log n)</strong>? It turns
+          out that if SAT cannot be solved significantly faster than brute force
+          (<strong>SETH conjecture</strong>), then problems such as
+          <strong>Orthogonal Vectors</strong>, <strong>Edit Distance</strong>,
+          <strong>Longest Common Subsequence</strong>, and many others do not
+          admit algorithms faster than <strong>n^2</strong>!
         </p>
+      </article>
 
-        <div class="topics">
-          <article class="topic">
-            <h3>Fine-grained complexity</h3>
-            <p>Boolean Satisfiability Problem (SAT) is usually the first NP-complete problem we meet in textbooks. If we believe in P != NP, SAT can not be solved in polynomial time. Can it be solved in 2^(n/2)? Or maybe n^(log n)? It turns out that if SAT can not be solved significantly faster than a bruteforce (SETH conjecture), then the problems such as Orthogonal Vectors, Edit Distance, Longest Common Subsequence and many other problems do not admit algorithms faster than n^2!</p>
-          </article>
+      <article class="topic">
+        <h3>Structural complexity</h3>
+        <p>
+          While in <strong>FGC</strong> we focus on individual problems, in
+          structural complexity we study <strong>large complexity classes</strong>
+          and connections between them. Sometimes brilliant results emerge: for
+          example, polynomially bounded interactive protocols
+          (<strong>IP</strong>) can unexpectedly compute all of
+          <strong>PSPACE</strong>, and a single counting oracle
+          (<strong>#P</strong>) is enough to capture the entire
+          <strong>polynomial hierarchy (PH)</strong>.
+        </p>
+      </article>
 
-          <article class="topic">
-            <h3>Structural complexity</h3>
-            <p>While in FGC we focus on individual problems, in structural complexity we study <strong>large</strong> complexity classes and connections between them. Sometimes brilliant results emerge: for example, polynomially bounded interactive protocols (IP) can unexpectedly compute all of PSPACE, and a single counting oracle (#P) is enough to capture the entire polynomial hierarchy (PH).</p>
-          </article>
-
-          <article class="topic">
-            <h3>Non-uniform complexity</h3>
-            <p>Non-uniform circuits (Boolean or algebraic) are extremely powerful: they can recognize undecidable languages. While proving circuit size lower bounds for natural problems is notoriously difficult, they surprisingly appear as barriers to many unresolved questions. For example, PIT derandomization, as well as SETH-hardness of 3SUM, implies strong circuit lower bounds for Boolean or algebraic circuits.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+      <article class="topic">
+        <h3>Non-uniform complexity</h3>
+        <p>
+          <strong>Non-uniform circuits</strong> (Boolean or algebraic) are
+          extremely powerful: they can recognize
+          <strong>undecidable languages</strong>. While proving
+          <strong>circuit size lower bounds</strong> for natural problems is
+          notoriously difficult, they surprisingly appear as barriers to many
+          unresolved questions. For example,
+          <strong>PIT derandomization</strong>, as well as
+          <strong>SETH-hardness of 3SUM</strong>, implies strong circuit lower
+          bounds for <strong>Boolean or algebraic circuits</strong>.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
 
     <section class="section" id="education">
       <h2>Education</h2>
