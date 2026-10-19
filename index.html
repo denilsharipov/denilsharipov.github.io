@@ -163,6 +163,16 @@
       font-size: 0.86rem;
     }
 
+    .email-addresses {
+      margin-top: 12px;
+      font-size: 0.86rem;
+      overflow-wrap: anywhere;
+    }
+
+    .email-addresses span {
+      display: block;
+    }
+
     .section {
       display: grid;
       grid-template-columns: 150px minmax(0, 1fr);
@@ -341,10 +351,11 @@
         <p class="summary">M.Sc. student at Weizmann Institute of Science.</p>
 
         <div class="contact-row">
-          <button class="contact-button" id="protected-contact" type="button">Copy email</button>
-          <a class="cv-button" href="https://denilsharipov.github.io/pdf/CV_Sharipov.pdf" download>Get CV</a>
+          <button class="contact-button" id="protected-contact" type="button" aria-controls="email-addresses" aria-expanded="false">Email</button>
+          <a class="cv-button" href="https://denilsharipov.github.io/pdf/CV_Sharipov.pdf" download>CV</a>
           <span class="location">Rehovot, Israel</span>
         </div>
+        <div class="email-addresses" id="email-addresses" aria-live="polite" hidden></div>
       </div>
     </header>
 
@@ -450,51 +461,33 @@
   <script>
     (() => {
       const button = document.getElementById('protected-contact');
+      const emailAddresses = document.getElementById('email-addresses');
 
-      const encodedContact = [
-        100, 101, 110, 105, 108, 46, 105,
-        46, 115, 104, 97, 114, 105, 112,
-        111, 118, 64, 103, 109, 97, 105,
-        108, 46, 99, 111, 109
+      const encodedContacts = [
+        [
+          100, 101, 110, 105, 108, 46, 105,
+          46, 115, 104, 97, 114, 105, 112,
+          111, 118, 64, 103, 109, 97, 105,
+          108, 46, 99, 111, 109
+        ],
+        [
+          100, 101, 110, 105, 108, 46, 115,
+          104, 97, 114, 105, 112, 111, 118,
+          64, 119, 101, 105, 122, 109, 97,
+          110, 110, 46, 97, 99, 46, 105, 108
+        ]
       ];
 
-      function fallbackCopy(text) {
-        const input = document.createElement('textarea');
-        input.value = text;
-        input.setAttribute('readonly', '');
-        input.style.position = 'fixed';
-        input.style.opacity = '0';
+      button.addEventListener('click', () => {
+        encodedContacts.forEach(encodedContact => {
+          const address = document.createElement('span');
+          address.textContent = String.fromCharCode(...encodedContact);
+          emailAddresses.appendChild(address);
+        });
 
-        document.body.appendChild(input);
-        input.select();
-
-        const copied = document.execCommand('copy');
-        input.remove();
-
-        return copied;
-      }
-
-      button.addEventListener('click', async () => {
-        const address = String.fromCharCode(...encodedContact);
-        let copied = false;
-
-        try {
-          if (navigator.clipboard && window.isSecureContext) {
-            await navigator.clipboard.writeText(address);
-            copied = true;
-          } else {
-            copied = fallbackCopy(address);
-          }
-        } catch {
-          copied = fallbackCopy(address);
-        }
-
-        button.textContent = copied ? 'Email copied' : 'Copy failed';
-
-        window.setTimeout(() => {
-          button.textContent = 'Copy email';
-        }, 1800);
-      });
+        emailAddresses.hidden = false;
+        button.setAttribute('aria-expanded', 'true');
+      }, { once: true });
     })();
   </script>
 </body>
